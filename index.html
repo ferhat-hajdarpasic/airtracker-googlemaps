@@ -78,7 +78,7 @@ app.directive('myMap', function() {
         console.log(response);
         for(var i = 0; i < response.data.length; i++) {
             var sensor = response.data[i];
-            setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lon), sensor.city, sensor.content);
+            setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, sensor.data);
         }
 //        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
   //      setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
