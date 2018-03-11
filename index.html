@@ -16,7 +16,7 @@
     }
   </style>
 
-  <title>AngularJS Google Maps example</title>
+<title>AirTracker Air Quality Map</title>
 <script type="text/javascript">//<![CDATA[
 
 var app = angular.module('myApp', []);
@@ -71,16 +71,51 @@ app.directive('myMap', function() {
       });
     }
 
+  function parseHexString(str) { 
+      if (str.length >= 2) { 
+          var temperature = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      if (str.length >= 2) { 
+          var pressure = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      if (str.length >= 2) { 
+          var photo = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      if (str.length >= 2) { 
+          var x_g = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      if (str.length >= 2) { 
+          var y_g = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      if (str.length >= 2) { 
+          var z_g = result.push(parseInt(str.substring(0, 2), 16));
+          str = str.substring(2, str.length);
+      }
+      return {
+        temp: temperature,
+        pressure: pressure,
+        photo: photo,
+        x_g: x_g,
+        y_g: y_g,
+        z_g: z_g
+      };
+  }
     // show the map and place some markers
     var $http = angular.injector(["ng"]).get("$http");
     var url = 'https://function-airtracker-sigfox-callback.azurewebsites.net/api/sensors?code=K4bQoTTabS7HGSdwa/bXF5Zqay93nC/RRcfWZmNTaqeuenzp/e4gag==';
     $http.get(url).then(function (response) {
       initMap(response.data[0]);
-        console.log(response);
-        for(var i = 0; i < response.data.length; i++) {
-            var sensor = response.data[i];
-            setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, sensor.data);
-        }
+      console.log(response);
+      for(var i = 0; i < response.data.length; i++) {
+        var sensor = response.data[i];
+        var measurement = parseHexString(sensor.data);
+        setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, measurement.temp);
+      }
     });
   };
 
