@@ -73,27 +73,27 @@ app.directive('myMap', function() {
 
   function parseHexString(str) { 
       if (str.length >= 2) { 
-          var temperature = parseInt(str[2]+str[3]+str[0]+str[1], 16);
+          var temperature = parseInt(str[2]+str[3]+str[0]+str[1], 16)/100;
           str = str.substring(2, str.length);
       }
       if (str.length >= 2) { 
-          var pressure = parseInt(str.substring(0, 2), 16);
+          var pressure = parseInt(str[2]+str[3]+str[0]+str[1], 16)/3;
           str = str.substring(2, str.length);
       }
       if (str.length >= 2) { 
-          var photo = parseInt(str.substring(0, 2), 16);
+          var photo = parseInt(str[2]+str[3]+str[0]+str[1], 16)/1000;
           str = str.substring(2, str.length);
       }
       if (str.length >= 2) { 
-          var x_g = parseInt(str.substring(0, 2), 16);
+          var x_g = parseInt(str[2]+str[3]+str[0]+str[1], 16)/250;
           str = str.substring(2, str.length);
       }
       if (str.length >= 2) { 
-          var y_g = parseInt(str.substring(0, 2), 16);
+          var y_g = parseInt(str[2]+str[3]+str[0]+str[1], 16)/250;
           str = str.substring(2, str.length);
       }
       if (str.length >= 2) { 
-          var z_g = parseInt(str.substring(0, 2), 16);
+          var z_g = parseInt(str[2]+str[3]+str[0]+str[1], 16)/250;
           str = str.substring(2, str.length);
       }
       return {
