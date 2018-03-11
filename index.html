@@ -28,16 +28,16 @@ app.directive('myMap', function() {
     var map, infoWindow;
     var markers = [];
 
-    // map config
-    var mapOptions = {
-      center: new google.maps.LatLng(50, 2),
-      zoom: 4,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false
-    };
-
     // init the map
     function initMap() {
+      // map config
+      var mapOptions = {
+        center: new google.maps.LatLng(50, 2),
+        zoom: 4,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false
+      };
+
       if (map === void 0) {
         map = new google.maps.Map(element[0], mapOptions);
         console.log('Map initialised!');
@@ -72,10 +72,10 @@ app.directive('myMap', function() {
     }
 
     // show the map and place some markers
-    initMap();
     var $http = angular.injector(["ng"]).get("$http");
     var url = 'https://function-airtracker-sigfox-callback.azurewebsites.net/api/sensors?code=K4bQoTTabS7HGSdwa/bXF5Zqay93nC/RRcfWZmNTaqeuenzp/e4gag==';
     $http.get(url).then(function (response) {
+      initMap();
         console.log(response);
         for(var i = 0; i < response.data.length; i++) {
             var sensor = response.data[i];
