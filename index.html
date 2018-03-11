@@ -40,6 +40,7 @@ app.directive('myMap', function() {
     function initMap() {
       if (map === void 0) {
         map = new google.maps.Map(element[0], mapOptions);
+        console.log('Map initialised!');
       }
     }
 
@@ -80,9 +81,6 @@ app.directive('myMap', function() {
             var sensor = response.data[i];
             setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, sensor.data);
         }
-//        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-  //      setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-    //    setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
     });
   };
 
