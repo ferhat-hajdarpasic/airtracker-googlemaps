@@ -114,7 +114,7 @@ app.directive('myMap', function() {
       for(var i = 0; i < response.data.length; i++) {
         var sensor = response.data[i];
         var measurement = parseHexString(sensor.data);
-        setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, `${measurement.temp}`);
+        setMarker(map, new google.maps.LatLng(sensor.lat, sensor.lng), sensor.station, `${measurement.temp} &nbsp; &#8451;`);
       }
     });
   };
